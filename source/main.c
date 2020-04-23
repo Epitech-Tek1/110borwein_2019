@@ -5,19 +5,19 @@
 ** main
 */
 
-#include "needs.h"
+#include "borwein.h"
 
 static bool (*process[])(void *t) =
 {
-    // error_handling,
-    // vm_core,
+    error_handling,
+    process
 };
 
-static bool needs(const int ac, char *const restrict *const restrict av)
+static bool bor(const int ac, char *const restrict *const restrict av)
 {
+    borwein_t borwein;
 
-
-    if (!init()) return (false);
+    if (!init(&borwein, m_atoi(av[1]), ac)) return (false);
     for (int i = 0; process[i]; i++)
         if (!process[i](NULL)) return (false);
     return (true);
@@ -25,5 +25,5 @@ static bool needs(const int ac, char *const restrict *const restrict av)
 
 int main(const int ac, char *const restrict *const restrict av)
 {
-    return (needs(ac, av)) ? (0) : (84);
+    return (bor(ac, av)) ? (0) : (84);
 }

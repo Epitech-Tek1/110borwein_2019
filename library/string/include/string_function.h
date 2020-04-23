@@ -8,6 +8,10 @@
 #ifndef STRING_FUNCTION_H_
 #define STRING_FUNCTION_H_
 
+bool m_isdigit(const char character);
+
+bool m_isnum(const char *restrict string);
+
 bool m_strcmp(const char *__restrict__ comparing, const char *__restrict__
 compared);
 

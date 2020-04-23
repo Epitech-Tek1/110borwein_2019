@@ -5,6 +5,12 @@
 ** init
 */
 
-#include "needs.h"
+#include "borwein.h"
 
-bool init()
+bool init(borwein_t *borwein, char *n, const int ac)
+{
+    if (!(borwein->data = malloc(sizeof(double) * NDATA))) return (false);
+    borwein->n = m_strcpy(borwein->n, n);
+    borwein->ac = ac;
+    return (true);
+}
