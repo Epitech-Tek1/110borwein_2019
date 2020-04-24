@@ -11,9 +11,12 @@ static bool bor(const int ac, char *const restrict *const restrict av)
 {
     borwein_t borwein;
 
+    if (!error_handling(ac, av[1])) return (false);
     if (!init(&borwein, av[1], ac)) return (false);
-    if (2 == ac && m_strcmp("-h", av[1])) {m_fread("data/describe.txt"); return (0);}
-    error_handling(&borwein, av[1]);
+    if (2 == ac && m_strcmp("-h", av[1])) {
+        m_fread("data/describe.txt");
+        return (0);
+    }
     process(&borwein);
     return (true);
 }

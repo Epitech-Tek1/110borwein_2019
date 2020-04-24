@@ -7,8 +7,7 @@
 
 #include "borwein.h"
 
-bool display(borwein_t *borwein)
+void display(borwein_t *borwein, char *header)
 {
     // printf("Midpoint:\nIO = %d\ndiff = %.10f", _N, borwein->data[MID].data);
-    return (true);
 }

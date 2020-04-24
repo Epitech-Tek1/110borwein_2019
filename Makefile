@@ -31,12 +31,11 @@ CFLAGS			=	-W -Wall
 
 LDFLAGS			=	-Iinclude/ -Llibrary \
 					-l_stat	\
-					-l_string	\
 					-l_maths	\
+					-l_assert	\
+					-l_string	\
 					-lm	\
 
-DFLAGS			=	-g -Wfatal-errors -Wpedantic -Wextra \
-					-Wnonnull -Wmain -Wmissing-attributes -Wsequence-point -pg
 
 all:			$(BIN)
 
@@ -48,12 +47,14 @@ lib:
 				@$(MAKE) -C library/string/
 				@$(MAKE) -C library/stat/
 				@$(MAKE) -C library/maths/
+				@$(MAKE) -C library/assert/
 
 clean:
 				$(RM) $(OBJ)
 				@$(MAKE) -C library/string/ clean
 				@$(MAKE) -C library/stat/ clean
 				@$(MAKE) -C library/maths/ clean
+				@$(MAKE) -C library/assert/ clean
 
 fclean:			clean
 				$(RM) $(BIN)
@@ -65,6 +66,7 @@ re_lib:
 				@$(MAKE) -C library/string/ re
 				@$(MAKE) -C library/stat/ re
 				@$(MAKE) -C library/maths/ re
+				@$(MAKE) -C library/assert/ re
 
 re:				fclean all
 

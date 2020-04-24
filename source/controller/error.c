@@ -9,11 +9,13 @@
 
 static bool error_synthax(const char *restrict string)
 {
-    return (!string || !m_isnum(string) || 0 == m_strlen((char *)string)) ?
-    (false) : (true);
+    return (
+        (!m_assert(string)) || (!m_assert(m_isnum(string))) ||
+        (!m_assert(0 != m_strlen((char *)string)))
+    ) ? (false) : (true);
 }
 
-bool error_handling(borwein_t *borwein, char *n)
+bool error_handling(int ac, char *n)
 {
-    return (!error_synthax(n) || borwein->ac != 2) ? (false) : (true);
+    return (!error_synthax(n) || ac != 2) ? (false) : (true);
 }
