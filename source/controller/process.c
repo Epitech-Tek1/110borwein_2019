@@ -7,20 +7,57 @@
 
 #include "borwein.h"
 
-static first_track(borwein_t *borwein)
+static double _function_tmp(double s, double v, double r, int i)
 {
-    for (int i = 0; i != NDATA; i++) borwein->data[i].data = 0;
-    for (int i = 0; i != 10000; i++) {
-        borwein->data[FIRST].data = First_n(i / 2, _N);
-        borwein->data[SECOND].data = First_n(i / 2 + .25, _N);
-        borwein->data[MID].data += borwein->data[FIRST].data;
-        borwein->data[TRAP].data += (borwein->data[FIRST].data * 2);
-        borwein->data[SIMP].data += (2 * borwein->data[FIRST].data) + (4 * borwein->data[SECOND].data);
+    if (s < i) return (r);
+    if (0 != v) r *= V(v, i);
+    return (_function_tmp(s, v, r, i++));
+}
+
+static void bor(borwein_t *borwein, int i)
+{
+    int tmp = (0 < borwein->data[E].data) ? true : false;
+
+    while (i < borwein->data[I].data) {
+        i = (tmp) ? (i + 1) : (i - 1);
+        borwein->data[R].data += _function_tmp(borwein->data[S].data, borwein->data[S].data + i * H, 0, 0);
     }
 }
 
+static void midpoint(borwein_t *borwein)
+{
+    bor(borwein, borwein->data[S].data - 1);
+    borwein->data[R].data *= (borwein->data[E].data - borwein->data[S].data) / borwein->data[I].data;
+}
+
+static void trapezoids(borwein_t *borwein)
+{
+    
+}
+
+static void simpson(borwein_t *borwein)
+{
+    
+}
+
+static void (*proc_fct[])(borwein_t *, char *) =
+{
+    midpoint,
+    display,
+    trapezoids,
+    display,
+    simpson,
+    display
+};
+
 bool process(borwein_t *borwein)
 {
-    if (0 < m_atoi(borwein->n)) first_track(borwein);
-    else second_track(borwein);
+    char *header[] = {"Midlepoint:", "Trapezoidal:", "Simpson:"};
+
+    printf("test\n");
+    for (int i = 0, n = 0; proc_fct[i]; i++, n += (i % 2 == 0) ? 0 : 1) {
+        printf("%d) %d\n", i, n);
+        proc_fct[i](borwein, header[n]);
+    }
+    return (true);
 }

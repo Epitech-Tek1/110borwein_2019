@@ -7,19 +7,14 @@
 
 #include "borwein.h"
 
-static bool (*process[])(void *t) =
-{
-    error_handling,
-    process
-};
-
 static bool bor(const int ac, char *const restrict *const restrict av)
 {
     borwein_t borwein;
 
-    if (!init(&borwein, m_atoi(av[1]), ac)) return (false);
-    for (int i = 0; process[i]; i++)
-        if (!process[i](NULL)) return (false);
+    if (!init(&borwein, av[1], ac)) return (false);
+    if (2 == ac && m_strcmp("-h", av[1])) {m_fread("data/describe.txt"); return (0);}
+    error_handling(&borwein, av[1]);
+    process(&borwein);
     return (true);
 }
 

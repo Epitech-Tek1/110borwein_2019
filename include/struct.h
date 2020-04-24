@@ -16,10 +16,10 @@ typedef struct data_s
 typedef struct borwein_s
 {
     data_t *data;
-    char *n;
+    int prc;
     int ac;
 } borwein_t;
 
-typedef enum {MID = 0, TRAP = 1, SIMP = 2, FIRST = 3, SECOND = 4};
+typedef enum list_s {S = 0, E = 1, I = 2, R = 3} list_t;
 
 #endif /* !STRUCT_H_ */

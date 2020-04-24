@@ -13,7 +13,7 @@ static bool error_synthax(const char *restrict string)
     (false) : (true);
 }
 
-bool error_handling(borwein_t *borwein)
+bool error_handling(borwein_t *borwein, char *n)
 {
-    return (!error_synthax || borwein->ac != 2) ? (false) : (true);
+    return (!error_synthax(n) || borwein->ac != 2) ? (false) : (true);
 }

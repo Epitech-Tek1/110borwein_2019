@@ -5,9 +5,10 @@
 ** display
 */
 
-#include "corewar.h"
+#include "borwein.h"
 
-bool display(core_t *core)
+bool display(borwein_t *borwein)
 {
+    // printf("Midpoint:\nIO = %d\ndiff = %.10f", _N, borwein->data[MID].data);
     return (true);
 }

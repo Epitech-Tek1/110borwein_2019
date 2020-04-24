@@ -5,35 +5,19 @@
 ## Makefile
 ##
 
-##
-## EPITECH PROJECT, 2020
-## Makefile-gen by Clement Muth [WSL: Debian]
-## File description:
-## Makefile
-##
-
 SUCCESS				= /bin/echo -e "\x1b[1m\x1b[33m\#\#\x1b[32m $1\x1b[0m"
 
 ## ========================================================================== ##
-PATH_DISPLAY		=	source/display/
-SRC_DISPLAY		=
-
-
-## ========================================================================== ##
-PATH_ERROR		=	source/error/
-SRC_ERROR		=
-
-
-## ========================================================================== ##
-PATH_INIT		=	source/init/
-SRC_INIT		=
+PATH_CONTROLLER		=	source/controller/
+SRC_CONTROLLER		=	error.c	\
+						init.c	\
+						process.c	\
+						display.c
 
 
 ## ========================================================================== ##
 SRC				=	source/main.c	\
-					$(addprefix $(PATH_DISPLAY), $(SRC_DISPLAY))	\
-					$(addprefix $(PATH_ERROR), $(SRC_ERROR))	\
-					$(addprefix $(PATH_INIT), $(SRC_INIT))	\
+					$(addprefix $(PATH_CONTROLLER), $(SRC_CONTROLLER))
 
 BIN				= 	110borwein
 
@@ -49,6 +33,7 @@ LDFLAGS			=	-Iinclude/ -Llibrary \
 					-l_stat	\
 					-l_string	\
 					-l_maths	\
+					-lm	\
 
 DFLAGS			=	-g -Wfatal-errors -Wpedantic -Wextra \
 					-Wnonnull -Wmain -Wmissing-attributes -Wsequence-point -pg
