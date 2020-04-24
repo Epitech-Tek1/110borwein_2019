@@ -19,6 +19,6 @@
 #define _PREC 10
 
 #define V(val, index) (sin(val / ((2 * index) + 1)) / (val / ((2 * index) + 1)))
-#define H (borwein->data[E].data - borwein->data[S].data) / borwein->data[I].data
+#define H ((borwein->data[E].data - borwein->data[S].data) / borwein->data[I].data)
 
 #endif /* !DEFINE_H_ */

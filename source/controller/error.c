@@ -17,5 +17,5 @@ static bool error_synthax(const char *restrict string)
 
 bool error_handling(int ac, char *n)
 {
-    return (!error_synthax(n) || ac != 2) ? (false) : (true);
+    return (!error_synthax(n) || !m_assert(ac == 2)) ? (false) : (true);
 }
